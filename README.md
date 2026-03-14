@@ -1,3 +1,4 @@
+We were not able to find and connect free api key of google to connect gmail for authentication{please understand due to limited time}
 # NetStock Backend — Setup Guide
 
 ## What's in this folder
