@@ -147,6 +147,7 @@ You should see the API info JSON.
 
 3. In `app.js`, replace the `doGmailLogin` function login call:
 
+
 **Find this in app.js:**
 ```javascript
 function doGmailLogin(){
@@ -251,22 +252,5 @@ async function doGmailLogin(){
 5. All future API calls include `Authorization: Bearer <token>`
 6. Token expires after **8 hours** (auto-logout)
 
----
 
-## ❓ Troubleshooting
-
-**"PostgreSQL connection failed"**
-→ Check DB_PASSWORD in .env matches what you set during PostgreSQL install
-
-**"database netstock does not exist"**
-→ Run: `psql -U postgres -c "CREATE DATABASE netstock;"`
-
-**"npm not found"**
-→ Node.js is not installed. Download from nodejs.org
-
-**Frontend can't reach backend (CORS error)**
-→ Make sure FRONTEND_URL in .env matches where your HTML is served from
-→ If using VS Code Live Server it's usually http://localhost:5500
-
-**Port 3001 already in use**
 → Change PORT=3002 in .env (and update API_BASE in api.js to match)
