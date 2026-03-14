@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NetStock — Warehouse Management System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ===================== LANDING ===================== -->
+<div id="landing">
+  <nav id="navbar">
+    <div class="nav-logo">
+  <img src="logo.png" alt="NS" style="width:32px;height:32px;object-fit:contain;filter:drop-shadow(0 0 6px rgba(196,98,45,.4))">
+  NetStock
+</div>
+    <div class="nav-links">
+      <span class="nav-link" onclick="smoothTo('features')">Features</span>
+      <span class="nav-link" onclick="smoothTo('roles')">Roles</span>
+      <button class="nav-cta" onclick="launchApp()">Launch App →</button>
+    </div>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-bg"></div><div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-tag"><div class="hero-tag-dot"></div>Warehouse Management System</div>
+      <h1 class="hero-h1">Inventory,<br><em>Mastered.</em></h1>
+      <p class="hero-sub">A complete warehouse management platform — track stock, manage deliveries, oversee manufacturing, and control access with Gmail-based login.</p>
+      <div class="hero-actions">
+        <button class="btn-hp" onclick="launchApp()">Launch App Free →</button>
+        <button class="btn-hg" onclick="smoothTo('features')">Explore Features</button>
+      </div>
+      <div class="hero-stats">
+        <div><div class="hs-val">247<span>+</span></div><div class="hs-lbl">Products tracked</div></div>
+        <div style="width:1px;height:40px;background:rgba(255,255,255,.08)"></div>
+        <div><div class="hs-val">14<span>k</span></div><div class="hs-lbl">Units in stock</div></div>
+        <div style="width:1px;height:40px;background:rgba(255,255,255,.08)"></div>
+        <div><div class="hs-val">3<span>x</span></div><div class="hs-lbl">Access roles</div></div>
+        <div style="width:1px;height:40px;background:rgba(255,255,255,.08)"></div>
+        <div><div class="hs-val">99<span>%</span></div><div class="hs-lbl">Uptime SLA</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="preview-frame">
+    <div class="preview-bar">
+      <div class="prev-dot" style="background:#FF5F57"></div>
+      <div class="prev-dot" style="background:#FEBC2E"></div>
+      <div class="prev-dot" style="background:#28C840"></div>
+      <div class="prev-url">app.netstock.in/dashboard</div>
+    </div>
+    <div class="preview-inner">
+      <div class="prev-sb">
+        <div style="font-size:8px;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.2);padding:5px 16px 3px">Overview</div>
+        <div class="pni active">⬛ Dashboard</div>
+        <div style="font-size:8px;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.2);padding:5px 16px 3px">Inventory</div>
+        <div class="pni">▦ Stock</div><div class="pni">◈ Products</div>
+        <div style="font-size:8px;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.2);padding:5px 16px 3px">Operations</div>
+        <div class="pni">◎ Delivery</div><div class="pni">◇ Manufacture</div><div class="pni">≡ Orders</div>
+        <div style="font-size:8px;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.2);padding:5px 16px 3px">Admin</div>
+        <div class="pni">⊛ User Mgmt</div>
+      </div>
+      <div class="prev-main">
+        <div class="ps-row">
+          <div class="ps-card"><div class="ps-lbl">Products</div><div class="ps-val">247</div></div>
+          <div class="ps-card"><div class="ps-lbl">Low Stock</div><div class="ps-val" style="color:#C4622D">18</div></div>
+          <div class="ps-card"><div class="ps-lbl">Deliveries</div><div class="ps-val">9</div></div>
+          <div class="ps-card"><div class="ps-lbl">Orders</div><div class="ps-val">134</div></div>
+        </div>
+        <div class="prev-chart-box">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:12px;color:#3A2E22">Stock Levels by Product</div>
+          <div class="prev-bars">
+            <div class="prev-bar" style="height:70%;background:#6B7F5E"></div>
+            <div class="prev-bar" style="height:90%;background:#6B7F5E"></div>
+            <div class="prev-bar" style="height:25%;background:#D4920A"></div>
+            <div class="prev-bar" style="height:55%;background:#6B7F5E"></div>
+            <div class="prev-bar" style="height:4%;background:#B94040"></div>
+            <div class="prev-bar" style="height:95%;background:#6B7F5E"></div>
+            <div class="prev-bar" style="height:18%;background:#D4920A"></div>
+            <div class="prev-bar" style="height:80%;background:#6B7F5E"></div>
+            <div class="prev-bar" style="height:50%;background:#6B7F5E"></div>
+            <div class="prev-bar" style="height:10%;background:#B94040"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="features" style="padding:90px 60px">
+    <div class="sec-lbl">What's inside</div>
+    <h2 class="sec-h2">Everything your warehouse<br><em>needs to run.</em></h2>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="feat-icon">🔐</div><div class="feat-title">Gmail-Based Login</div><div class="feat-desc">Sign in with your Google account. Access is automatically determined by your registered email — no passwords, no hassle.</div><div class="feat-tag">✓ OAuth simulated</div></div>
+      <div class="feat-card"><div class="feat-icon">👑</div><div class="feat-title">Administrator Panel</div><div class="feat-desc">A dedicated Admin role can add users, change roles (Admin/Manager/Warehouse), deactivate accounts, and control every access privilege.</div><div class="feat-tag">✓ Live in app</div></div>
+      <div class="feat-card"><div class="feat-icon">📦</div><div class="feat-title">Stock Management</div><div class="feat-desc">Add, edit, and monitor stock levels. Low-stock alerts and reorder level tracking keep you ahead of shortages automatically.</div><div class="feat-tag">✓ Live in app</div></div>
+      <div class="feat-card"><div class="feat-icon">🚚</div><div class="feat-title">Delivery Dashboard</div><div class="feat-desc">Track every delivery with progress bars, ETA monitoring, and instant delay alerts. Update delivery status in real time.</div><div class="feat-tag">✓ Live in app</div></div>
+      <div class="feat-card"><div class="feat-icon">📊</div><div class="feat-title">Analytics Charts</div><div class="feat-desc">Five live dashboard charts — stock, order status, revenue, category breakdown, and delivery progress. Filter by category instantly.</div><div class="feat-tag">✓ Live in app</div></div>
+      <div class="feat-card"><div class="feat-icon">🔔</div><div class="feat-title">Smart Notifications</div><div class="feat-desc">Real-time alerts for managers and admins — out-of-stock events, delayed deliveries, new orders. Categorised and dismissible.</div><div class="feat-tag">✓ Manager + Admin</div></div>
+    </div>
+  </section>
+
+  <section id="roles" style="padding:80px 60px 90px;background:rgba(255,255,255,.02);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)">
+    <div class="sec-lbl">User Roles</div>
+    <h2 class="sec-h2">Three roles, <em>perfectly scoped.</em></h2>
+    <div class="roles-grid">
+      <div class="role-card admin">
+        <div class="rc-tag">Administrator</div>
+        <div class="rc-title">Full Control</div>
+        <div class="rc-perm"><div class="pck pck-y">✓</div>Manage all users & roles</div>
+        <div class="rc-perm"><div class="pck pck-y">✓</div>Add / remove accounts</div>
+        <div class="rc-perm"><div class="pck pck-y">✓</div>Change anyone's access</div>
+        <div class="rc-perm"><div class="pck pck-y">✓</div>All Manager capabilities</div>
+        <div class="rc-perm"><div class="pck pck-y">✓</div>Smart notifications</div>
+        <div class="rc-perm"><div class="pck pck-y">✓</div>System-wide oversight</div>
+      </div>
+      <div class="role-card manager">
+        <div class="rc-tag">Manager</div>
+        <div class="rc-title">Operational Control</div>
+        <div class="rc-perm"><div class="pck pck-y">✓</div>Add & edit stock/products</div>
+        <div class="rc-perm"><div class="pck pck-y">✓</div>Create manufacture orders</div>
+        <div class="rc-perm"><div class="pck pck-y">✓</div>Manage deliveries</div>
+        <div class="rc-perm"><div class="pck pck-y">✓</div>Smart notifications</div>
+        <div class="rc-perm"><div class="pck pck-r">RO</div>View users (read only)</div>
+        <div class="rc-perm"><div class="pck pck-n">✗</div>Cannot change user roles</div>
+      </div>
+      <div class="role-card warehouse">
+        <div class="rc-tag">Warehouse</div>
+        <div class="rc-title">View Access</div>
+        <div class="rc-perm"><div class="pck pck-y">✓</div>View dashboard & charts</div>
+        <div class="rc-perm"><div class="pck pck-r">RO</div>View stock & products</div>
+        <div class="rc-perm"><div class="pck pck-y">✓</div>View deliveries & orders</div>
+        <div class="rc-perm"><div class="pck pck-r">RO</div>View manufacture orders</div>
+        <div class="rc-perm"><div class="pck pck-n">✗</div>No edit capabilities</div>
+        <div class="rc-perm"><div class="pck pck-n">✗</div>No notifications</div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <div id="cta-strip">
+    <div class="cta-t">
+      <h2>Ready to take control of<br><em>your warehouse?</em></h2>
+      <p>Sign in with Gmail — no sign-up form needed for the demo.</p>
+    </div>
+    <button class="btn-hp" style="flex-shrink:0;font-size:16px;padding:16px 42px" onclick="launchApp()">Launch App →</button>
+  </div>
+
+  <footer>
+    <div class="footer-logo" style="display:flex;align-items:center;gap:8px;"><img src="logo.png" alt="NS" style="width:22px;height:22px;object-fit:contain;opacity:.6"> NetStock</div>
+    <div class="footer-note">© 2026 NetStock · Gmail-based access · Built for modern warehouses</div>
+  </footer>
+</div>
+
+<!-- ===================== APP SHELL ===================== -->
+<div id="app-shell">
+
+  <!-- GMAIL LOGIN SCREEN -->
+  <div id="gmail-login">
+    <div class="gl-card">
+      <div class="gl-logo" style="display:flex;align-items:center;justify-content:center;gap:10px;">
+  <img src="logo.png" alt="NS" style="width:40px;height:40px;object-fit:contain;">
+  NetStock
+</div>
+      <div class="gl-sub">Sign in with Google</div>
+      <!-- Google Sign-In Button -->
+      <button class="btn-gmail-login" id="btn-google-signin" style="background:white;color:#3A2E22;border:1.5px solid #D4C4A8;margin-bottom:8px" onclick="startGoogleOAuth()">
+        <svg class="google-g" viewBox="0 0 48 48"><path fill="#4285F4" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-21 0-1.3-.2-2.7-.5-4z"/><path fill="#34A853" d="M6.3 14.7l7 5.1C15 16.1 19.1 13 24 13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 16.3 2 9.6 7.4 6.3 14.7z"/><path fill="#FBBC05" d="M24 46c5.8 0 10.8-1.9 14.6-5.2l-6.7-5.5C29.8 36.8 27 38 24 38c-6.1 0-10.7-3.8-11.8-9l-7 5.4C8.6 41.6 15.7 46 24 46z"/><path fill="#EA4335" d="M44.5 20H24v8.5h11.8c-1 3.1-3.2 5.6-6.1 7.3l6.7 5.5C40.6 37.3 45 31.4 45 24c0-1.3-.2-2.7-.5-4z"/></svg>
+        Sign in with Google (Opens Gmail)
+      </button>
+      <div id="google-user-info" style="display:none;background:#f8f8f8;border-radius:10px;padding:12px 14px;margin-bottom:12px;text-align:left;border:1.5px solid #D4C4A8;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <img id="google-avatar" src="" style="width:36px;height:36px;border-radius:50%;object-fit:cover;" onerror="this.style.display='none'">
+          <div>
+            <div id="google-display-name" style="font-size:13px;font-weight:700;color:#3A2E22;"></div>
+            <div id="google-display-email" style="font-size:11px;color:#8B7A68;"></div>
+          </div>
+          <button onclick="signOutGoogle()" style="margin-left:auto;font-size:11px;color:#C4622D;background:none;border:none;cursor:pointer;text-decoration:underline;">Sign out</button>
+        </div>
+      </div>
+      <div class="gl-divider">or pick a demo account</div>
+      <div class="gmail-accounts" id="gmail-accounts"></div>
+      <button class="btn-gmail-login" onclick="doGmailLogin()">Sign In →</button>
+      <p style="font-size:11px;color:var(--amu);text-align:center;margin-top:12px">Use Google sign-in above for real auth, or pick a demo account below</p>
+    </div>
+  </div>
+
+  <!-- NOTIFICATION OVERLAY + PANEL -->
+  <div class="notif-ov" id="notif-ov" onclick="closeNotif()"></div>
+  <div class="notif-panel" id="notif-panel">
+    <div class="np-head">
+      <div class="np-title">Notifications</div>
+      <div style="display:flex;gap:6px;align-items:center">
+        <button class="btn btn-o" style="padding:4px 10px;font-size:10px" onclick="markAllRead()">Mark all read</button>
+        <button class="btn btn-g" style="padding:4px 8px;font-size:12px" onclick="closeNotif()">✕</button>
+      </div>
+    </div>
+    <div class="notif-tabs">
+      <div class="n-tab active" onclick="switchNTab('all',this)">All <span id="nt-all"></span></div>
+      <div class="n-tab" onclick="switchNTab('alert',this)">Alerts <span id="nt-alert"></span></div>
+      <div class="n-tab" onclick="switchNTab('info',this)">Updates <span id="nt-info"></span></div>
+    </div>
+    <div class="notif-list" id="notif-list"></div>
+    <div class="np-foot">
+      <button class="btn btn-o" onclick="clearNotifs()">Clear All</button>
+      <button class="btn btn-p" onclick="addSimNotif()">+ Simulate Alert</button>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div id="app-sb">
+    <div class="app-brand">
+      <div class="app-brand-n" style="display:flex;align-items:center;gap:8px;">
+  <img src="logo.png" alt="NS" style="width:26px;height:26px;object-fit:contain;filter:brightness(1.2);">
+  NetStock
+</div>
+      <div class="app-brand-s">WMS v2.1</div>
+    </div>
+    <div class="app-user-row">
+      <div class="app-av" id="app-av">MK</div>
+      <div>
+        <div class="app-uname" id="app-uname">M. Kumar</div>
+        <div class="app-uemail" id="app-uemail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="472a2222352607242835222e2931692e29">[email&#160;protected]</a></div>
+        <div class="app-rpill manager" id="app-rpill">Manager</div>
+      </div>
+    </div>
+    <nav class="app-nav" id="app-nav"></nav>
+    <div class="back-btn" onclick="backToLanding()">← Back to website</div>
+    <div class="logout-btn" onclick="doLogout()">↩ Sign out</div>
+  </div>
+
+  <!-- MAIN -->
+  <div id="app-main">
+    <div class="app-tb">
+      <div class="app-ptitle" id="app-ptitle">Dashboard</div>
+      <div class="tb-right">
+        <div class="role-sw-btn" onclick="doLogout()" title="Switch account">
+          <span id="tb-role">Manager</span><span style="opacity:.4">⇄ switch</span>
+        </div>
+        <div class="notif-bell" id="notif-bell" style="display:none" onclick="openNotif()">
+          🔔 <span class="notif-cnt" id="notif-cnt">0</span>
+          <div class="notif-dot" id="notif-dot"></div>
+        </div>
+        <span style="font-size:12px;color:var(--amu)" id="app-date"></span>
+      </div>
+    </div>
+    <div class="app-pc">
+
+      <!-- DASHBOARD -->
+      <div class="a-view active" id="av-dashboard">
+        <div class="stat-grid">
+          <div class="stat-card"><div class="stat-lbl">Total Products</div><div class="stat-val">247</div><div class="stat-sub"><span class="s-up">↑ 12</span> this month</div></div>
+          <div class="stat-card"><div class="stat-lbl">Low Stock</div><div class="stat-val" style="color:var(--ar)">18</div><div class="stat-sub"><span class="s-dn">needs reorder</span></div></div>
+          <div class="stat-card"><div class="stat-lbl">Active Deliveries</div><div class="stat-val">9</div><div class="stat-sub"><span class="s-up">3</span> arriving today</div></div>
+          <div class="stat-card"><div class="stat-lbl">Orders This Month</div><div class="stat-val">134</div><div class="stat-sub"><span class="s-up">↑ 8%</span> vs last</div></div>
+        </div>
+        <div class="chart-full">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px">
+            <div><div class="ct-title">Stock Levels by Product</div><div class="ct-sub">Current qty vs reorder level</div></div>
+            <div class="cat-filters" id="cat-filters"></div>
+          </div>
+          <div style="height:240px;position:relative"><canvas id="c-stock"></canvas></div>
+        </div>
+        <div class="chart-2">
+          <div class="chart-card"><div class="ct-title">Orders by Status</div><div class="ct-sub">This month</div><div style="height:180px;position:relative"><canvas id="c-status"></canvas></div></div>
+          <div class="chart-card"><div class="ct-title">Revenue Trend</div><div class="ct-sub">Last 8 orders · ₹</div><div style="height:180px;position:relative"><canvas id="c-revenue"></canvas></div></div>
+        </div>
+        <div class="chart-2">
+          <div class="chart-card"><div class="ct-title">Products by Category</div><div class="ct-sub">SKU count</div><div style="height:180px;position:relative"><canvas id="c-cat"></canvas></div></div>
+          <div class="chart-card"><div class="ct-title">Delivery Progress</div><div class="ct-sub">Active shipments</div><div style="height:180px;position:relative"><canvas id="c-del"></canvas></div></div>
+        </div>
+        <div class="a-grid2">
+          <div class="t-card"><div class="t-head"><div class="t-title">Recent Orders</div><button class="btn btn-o" style="font-size:11px" onclick="showView('orders')">View All</button></div><table><thead><tr><th>Order ID</th><th>Product</th><th>Qty</th><th>Status</th></tr></thead><tbody id="d-orders"></tbody></table></div>
+          <div class="t-card"><div class="t-head"><div class="t-title">Low Stock Alerts</div><button class="btn btn-p" style="font-size:11px" onclick="showView('stock')">Manage Stock</button></div><table><thead><tr><th>Product</th><th>Stock</th><th>Reorder</th></tr></thead><tbody id="d-low"></tbody></table></div>
+        </div>
+      </div>
+
+      <!-- STOCK -->
+      <div class="a-view" id="av-stock">
+        <div id="stock-ro" class="ro-banner" style="display:none">⚠ Read-only. Contact a Manager or Admin to make changes.</div>
+        <div class="stat-grid">
+          <div class="stat-card"><div class="stat-lbl">Total SKUs</div><div class="stat-val">247</div></div>
+          <div class="stat-card"><div class="stat-lbl">Total Units</div><div class="stat-val">14,820</div></div>
+          <div class="stat-card"><div class="stat-lbl">Low Stock</div><div class="stat-val" style="color:var(--ar)">18</div></div>
+          <div class="stat-card"><div class="stat-lbl">Out of Stock</div><div class="stat-val" style="color:var(--ared)">4</div></div>
+        </div>
+        <div class="t-card"><div class="t-head"><div class="t-title">Stock Inventory</div><div style="display:flex;gap:8px;align-items:center"><input class="a-search" placeholder="Search..." id="stock-q" oninput="filterStock()" style="width:160px"><button class="btn btn-p" id="btn-add-stock" onclick="openAddStock()">+ Add Stock</button></div></div><table><thead><tr><th>SKU</th><th>Product</th><th>Category</th><th>Qty</th><th>Reorder</th><th>Location</th><th>Status</th><th>Action</th></tr></thead><tbody id="t-stock"></tbody></table></div>
+      </div>
+
+      <!-- PRODUCTS -->
+      <div class="a-view" id="av-products">
+        <div id="prod-ro" class="ro-banner" style="display:none">⚠ Read-only access to product catalog.</div>
+        <div class="t-card"><div class="t-head"><div class="t-title">Product Catalog</div><button class="btn btn-p" id="btn-add-prod" onclick="openAddProd()">+ New Product</button></div><table><thead><tr><th>SKU</th><th>Name</th><th>Category</th><th>Supplier</th><th>Unit Price</th><th>Lead Days</th><th>Action</th></tr></thead><tbody id="t-products"></tbody></table></div>
+      </div>
+
+      <!-- DELIVERY -->
+      <div class="a-view" id="av-delivery">
+        <div class="stat-grid">
+          <div class="stat-card"><div class="stat-lbl">Pending</div><div class="stat-val">5</div></div>
+          <div class="stat-card"><div class="stat-lbl">In Transit</div><div class="stat-val">9</div></div>
+          <div class="stat-card"><div class="stat-lbl">Delivered Today</div><div class="stat-val">3</div></div>
+          <div class="stat-card"><div class="stat-lbl">Delayed</div><div class="stat-val" style="color:var(--ar)">2</div></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--adp);font-weight:600">Active Deliveries</div>
+          <button class="btn btn-p" id="btn-new-delivery" onclick="openNewDelivery()">+ New Delivery</button>
+        </div>
+        <div id="t-delivery"></div>
+      </div>
+
+      <!-- MANUFACTURE -->
+      <div class="a-view" id="av-manufacture">
+        <div class="a-grid2">
+          <div class="t-card"><div class="t-head"><div class="t-title">Manufacture Orders</div><button class="btn btn-p" id="btn-new-mo" onclick="openNewMO()">+ New Order</button></div><table><thead><tr><th>MO#</th><th>Product</th><th>Qty</th><th>Due</th><th>Status</th><th>Action</th></tr></thead><tbody id="t-mo"></tbody></table></div>
+          <div class="t-card"><div class="t-head"><div class="t-title">Suppliers</div><button class="btn btn-p" id="btn-add-supplier" onclick="openAddSupplier()">+ Add Supplier</button></div><table><thead><tr><th>Supplier</th><th>Category</th><th>Lead</th><th>Rating</th><th>Action</th></tr></thead><tbody id="t-supp"></tbody></table></div>
+        </div>
+      </div>
+
+      <!-- ORDERS -->
+      <div class="a-view" id="av-orders">
+        <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap">
+          <input class="a-search" placeholder="Search orders..." id="order-q" oninput="filterOrders()" style="width:200px">
+          <select class="form-sel" style="width:130px" id="order-sf" onchange="filterOrders()"><option value="">All Status</option><option>Delivered</option><option>Processing</option><option>Shipped</option><option>Cancelled</option></select>
+          <button class="btn btn-p" id="btn-new-order" onclick="openNewOrder()">+ New Order</button>
+        </div>
+        <div class="t-card"><div class="t-head"><div class="t-title">Order History</div><span id="order-cnt" style="font-size:11px;color:var(--amu)"></span></div><table><thead><tr><th>Order ID</th><th>Date</th><th>Product</th><th>Customer</th><th>Qty</th><th>Total</th><th>Status</th><th>Action</th></tr></thead><tbody id="t-orders"></tbody></table></div>
+      </div>
+
+      <!-- USER MANAGEMENT (Admin only) -->
+      <div class="a-view" id="av-usermgmt">
+        <div class="admin-banner">⚙ Administrator Panel — You have full control over user accounts and access privileges.</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--adp);font-weight:600">User Management</div>
+          <button class="btn btn-p" onclick="openAddUser()">+ Add User</button>
+        </div>
+        <div class="user-card-grid" id="user-cards"></div>
+      </div>
+
+      <!-- USERS (view for Manager) -->
+      <div class="a-view" id="av-users">
+        <div class="t-card"><div class="t-head"><div class="t-title">System Users</div><span style="font-size:12px;color:var(--amu)">Contact Admin to manage users</span></div><table><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Last Login</th><th>Status</th></tr></thead><tbody id="t-users"></tbody></table></div>
+      </div>
+
+      <!-- PERMISSIONS -->
+      <div class="a-view" id="av-permissions">
+        <div class="perm-grid2">
+          <div class="perm-card">
+            <div class="perm-head ah"><div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#D4920A,#8B6F47);display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:700">A</div><div><div style="font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--aam);font-weight:600">Administrator</div></div></div>
+            <div id="pm-admin"></div>
+          </div>
+          <div class="perm-card">
+            <div class="perm-head mh"><div style="width:28px;height:28px;border-radius:50%;background:var(--ar);display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:700">M</div><div><div style="font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--ard);font-weight:600">Manager</div></div></div>
+            <div id="pm-mgr"></div>
+          </div>
+          <div class="perm-card">
+            <div class="perm-head wh"><div style="width:28px;height:28px;border-radius:50%;background:var(--asg);display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:700">W</div><div><div style="font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--asg);font-weight:600">Warehouse</div></div></div>
+            <div id="pm-wh"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WAREHOUSE REPORTS -->
+      <div class="a-view" id="av-reports">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+          <div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--adp);font-weight:600">Warehouse Reports</div>
+            <div style="font-size:12px;color:var(--amu);margin-top:2px" id="report-role-note"></div>
+          </div>
+          <div style="display:flex;gap:8px;" id="report-actions">
+            <button class="btn btn-p" id="btn-new-report" onclick="openNewReport()">+ Submit Report</button>
+          </div>
+        </div>
+        <div class="stat-grid" style="margin-bottom:18px">
+          <div class="stat-card"><div class="stat-lbl">Total Reports</div><div class="stat-val" id="rpt-total">0</div></div>
+          <div class="stat-card"><div class="stat-lbl">Pending Review</div><div class="stat-val" style="color:var(--ar)" id="rpt-pending">0</div></div>
+          <div class="stat-card"><div class="stat-lbl">Reviewed</div><div class="stat-val" style="color:var(--asg)" id="rpt-reviewed">0</div></div>
+          <div class="stat-card"><div class="stat-lbl">Flagged</div><div class="stat-val" style="color:var(--ared)" id="rpt-flagged">0</div></div>
+        </div>
+        <div class="t-card">
+          <div class="t-head">
+            <div class="t-title">Report Log</div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <select class="form-sel" style="width:130px" id="rpt-filter" onchange="renderReports()">
+                <option value="">All Types</option>
+                <option>Stock Issue</option>
+                <option>Damage Report</option>
+                <option>Low Stock Alert</option>
+                <option>Safety Concern</option>
+                <option>General</option>
+              </select>
+            </div>
+          </div>
+          <table>
+            <thead><tr><th>Report ID</th><th>Type</th><th>Title</th><th>Submitted By</th><th>Date</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody id="t-reports"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- DENIED -->
+      <div class="a-view" id="av-denied">
+        <div class="denied-box">
+          <div style="font-size:44px;margin-bottom:14px;opacity:.3">🔒</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--adp);font-weight:600;margin-bottom:8px">Access Restricted</div>
+          <div style="color:var(--amu);font-size:13px">Contact your Administrator to request access.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ========= ALL MODALS ========= -->
+<!-- Add/Edit Stock -->
+<div class="modal-ov" id="modal-stock">
+  <div class="modal">
+    <div class="modal-title" id="mstock-title">Add Stock</div>
+    <div class="form-row"><div class="form-g"><label class="form-lbl">Product</label><select class="form-sel" id="s-prod"></select></div><div class="form-g"><label class="form-lbl">Quantity</label><input class="form-inp" id="s-qty" type="number" placeholder="0"></div></div>
+    <div class="form-row"><div class="form-g"><label class="form-lbl">Reorder Level</label><input class="form-inp" id="s-reorder" type="number" placeholder="50"></div><div class="form-g"><label class="form-lbl">Location</label><input class="form-inp" id="s-loc" placeholder="Rack A-1"></div></div>
+    <div class="modal-actions"><button class="btn btn-g" onclick="closeModal('modal-stock')">Cancel</button><button class="btn btn-p" onclick="saveStock()">Save</button></div>
+  </div>
+</div>
+<!-- Add/Edit Product -->
+<div class="modal-ov" id="modal-prod">
+  <div class="modal">
+    <div class="modal-title" id="mprod-title">New Product</div>
+    <div class="form-row"><div class="form-g"><label class="form-lbl">Product Name</label><input class="form-inp" id="p-name" placeholder="Product name"></div><div class="form-g"><label class="form-lbl">SKU</label><input class="form-inp" id="p-sku" placeholder="SKU-999"></div></div>
+    <div class="form-row"><div class="form-g"><label class="form-lbl">Category</label><select class="form-sel" id="p-cat"><option>Electronics</option><option>Furniture</option><option>Apparel</option><option>Food</option><option>Tools</option><option>Raw Materials</option></select></div><div class="form-g"><label class="form-lbl">Unit Price (₹)</label><input class="form-inp" id="p-price" type="number" placeholder="0"></div></div>
+    <div class="form-row"><div class="form-g"><label class="form-lbl">Supplier</label><select class="form-sel" id="p-supplier"></select></div><div class="form-g"><label class="form-lbl">Lead Days</label><input class="form-inp" id="p-lead" type="number" placeholder="7"></div></div>
+    <div class="modal-actions"><button class="btn btn-g" onclick="closeModal('modal-prod')">Cancel</button><button class="btn btn-p" onclick="saveProd()">Save Product</button></div>
+  </div>
+</div>
+<!-- New Delivery -->
+<div class="modal-ov" id="modal-delivery">
+  <div class="modal">
+    <div class="modal-title">New Delivery</div>
+    <div class="form-row"><div class="form-g"><label class="form-lbl">Delivery ID</label><input class="form-inp" id="d-id" placeholder="DEL-506"></div><div class="form-g"><label class="form-lbl">Supplier</label><select class="form-sel" id="d-supplier"></select></div></div>
+    <div class="form-row"><div class="form-g"><label class="form-lbl">Product</label><select class="form-sel" id="d-prod"></select></div><div class="form-g"><label class="form-lbl">Quantity</label><input class="form-inp" id="d-qty" type="number" placeholder="0"></div></div>
+    <div class="form-row"><div class="form-g"><label class="form-lbl">Destination</label><input class="form-inp" id="d-dest" placeholder="Delivery location"></div><div class="form-g"><label class="form-lbl">ETA Date</label><input class="form-inp" id="d-eta" type="date"></div></div>
+    <div class="form-row"><div class="form-g"><label class="form-lbl">Status</label><select class="form-sel" id="d-status"><option>Pending</option><option>In Transit</option><option>Delayed</option></select></div></div>
+    <div class="modal-actions"><button class="btn btn-g" onclick="closeModal('modal-delivery')">Cancel</button><button class="btn btn-p" onclick="saveDelivery()">Create Delivery</button></div>
+  </div>
+</div>
+<!-- New MO -->
+<div class="modal-ov" id="modal-mo">
+  <div class="modal">
+    <div class="modal-title" id="mmo-title">New Manufacture Order</div>
+    <div class="form-row"><div class="form-g"><label class="form-lbl">MO Number</label><input class="form-inp" id="mo-num" placeholder="MO-091"></div><div class="form-g"><label class="form-lbl">Product</label><select class="form-sel" id="mo-prod"></select></div></div>
+    <div class="form-row"><div class="form-g"><label class="form-lbl">Quantity</label><input class="form-inp" id="mo-qty" type="number" placeholder="100"></div><div class="form-g"><label class="form-lbl">Due Date</label><input class="form-inp" id="mo-due" type="date"></div></div>
+    <div class="form-g"><label class="form-lbl">Status</label><select class="form-sel" id="mo-status"><option>Scheduled</option><option>In Progress</option><option>Completed</option></select></div>
+    <div class="modal-actions"><button class="btn btn-g" onclick="closeModal('modal-mo')">Cancel</button><button class="btn btn-p" onclick="saveMO()">Save Order</button></div>
+  </div>
+</div>
+<!-- Add Supplier -->
+<div class="modal-ov" id="modal-supplier">
+  <div class="modal">
+    <div class="modal-title">Add Supplier</div>
+    <div class="form-row"><div class="form-g"><label class="form-lbl">Supplier Name</label><input class="form-inp" id="sup-name" placeholder="Supplier Co."></div><div class="form-g"><label class="form-lbl">Category</label><select class="form-sel" id="sup-cat"><option>Electronics</option><option>Apparel</option><option>Food</option><option>Tools</option><option>Furniture</option><option>Raw Materials</option></select></div></div>
+    <div class="form-row"><div class="form-g"><label class="form-lbl">Lead Days</label><input class="form-inp" id="sup-lead" type="number" placeholder="7"></div><div class="form-g"><label class="form-lbl">Rating (1-5 stars)</label><input class="form-inp" id="sup-rating" type="number" min="1" max="5" placeholder="4"></div></div>
+    <div class="modal-actions"><button class="btn btn-g" onclick="closeModal('modal-supplier')">Cancel</button><button class="btn btn-p" onclick="saveSupplier()">Add Supplier</button></div>
+  </div>
+</div>
+<!-- New Order -->
+<div class="modal-ov" id="modal-order">
+  <div class="modal">
+    <div class="modal-title">New Order</div>
+    <div class="form-row"><div class="form-g"><label class="form-lbl">Customer Name</label><input class="form-inp" id="o-cust" placeholder="Company Name"></div><div class="form-g"><label class="form-lbl">Product</label><select class="form-sel" id="o-prod"></select></div></div>
+    <div class="form-row"><div class="form-g"><label class="form-lbl">Quantity</label><input class="form-inp" id="o-qty" type="number" placeholder="10"></div><div class="form-g"><label class="form-lbl">Status</label><select class="form-sel" id="o-status"><option>Processing</option><option>Shipped</option><option>Delivered</option><option>Cancelled</option></select></div></div>
+    <div class="modal-actions"><button class="btn btn-g" onclick="closeModal('modal-order')">Cancel</button><button class="btn btn-p" onclick="saveOrder()">Create Order</button></div>
+  </div>
+</div>
+<!-- Add User (Admin) -->
+<div class="modal-ov" id="modal-adduser">
+  <div class="modal">
+    <div class="modal-title">Add New User</div>
+    <div class="form-row"><div class="form-g"><label class="form-lbl">Full Name</label><input class="form-inp" id="nu-name" placeholder="Full Name"></div><div class="form-g"><label class="form-lbl">Gmail Address</label><input class="form-inp" id="nu-email" placeholder="user@gmail.com"></div></div>
+    <div class="form-row"><div class="form-g"><label class="form-lbl">Role</label><select class="form-sel" id="nu-role"><option value="warehouse">Warehouse</option><option value="manager">Manager</option><option value="admin">Administrator</option></select></div><div class="form-g"><label class="form-lbl">Department</label><input class="form-inp" id="nu-dept" placeholder="e.g. Operations"></div></div>
+    <div class="modal-actions"><button class="btn btn-g" onclick="closeModal('modal-adduser')">Cancel</button><button class="btn btn-p" onclick="saveNewUser()">Add User</button></div>
+  </div>
+</div>
+<!-- New Report Modal -->
+<div class="modal-ov" id="modal-report">
+  <div class="modal">
+    <div class="modal-title" id="mrpt-title">Submit Warehouse Report</div>
+    <div class="form-row">
+      <div class="form-g"><label class="form-lbl">Report Type</label>
+        <select class="form-sel" id="rpt-type">
+          <option>Stock Issue</option>
+          <option>Damage Report</option>
+          <option>Low Stock Alert</option>
+          <option>Safety Concern</option>
+          <option>General</option>
+        </select>
+      </div>
+      <div class="form-g"><label class="form-lbl">Title</label><input class="form-inp" id="rpt-title-inp" placeholder="Brief report title"></div>
+    </div>
+    <div class="form-g" style="margin-bottom:12px"><label class="form-lbl">Description</label>
+      <textarea class="form-inp" id="rpt-desc" rows="3" placeholder="Describe the issue in detail..." style="resize:vertical;min-height:80px;font-family:inherit;font-size:13px;"></textarea>
+    </div>
+    <div class="form-row">
+      <div class="form-g"><label class="form-lbl">Location / Rack</label><input class="form-inp" id="rpt-loc" placeholder="e.g. Rack B-3, Zone A"></div>
+      <div class="form-g"><label class="form-lbl">Priority</label>
+        <select class="form-sel" id="rpt-priority">
+          <option>Low</option><option selected>Medium</option><option>High</option><option>Critical</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-g" onclick="closeModal('modal-report')">Cancel</button>
+      <button class="btn btn-p" onclick="saveReport()">Submit Report</button>
+    </div>
+  </div>
+</div>
+
+<!-- View Report Modal -->
+<div class="modal-ov" id="modal-view-report">
+  <div class="modal" style="max-width:500px">
+    <div class="modal-title">Report Details</div>
+    <div id="report-detail-body" style="font-size:13px;color:var(--atx);line-height:1.7;"></div>
+    <div class="modal-actions" id="report-detail-actions">
+      <button class="btn btn-g" onclick="closeModal('modal-view-report')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Gmail Picker (demo simulation) -->
+<div class="modal-ov" id="modal-gmail-picker">
+  <div class="modal">
+    <div class="modal-title">Choose a Google Account</div>
+    <div style="font-size:13px;color:var(--amu);margin-bottom:16px">to continue to <strong>NetStock</strong></div>
+    <div id="gmail-picker-list" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px"></div>
+    <div style="border-top:1px solid var(--abrdl);padding-top:14px;text-align:center">
+      <button class="btn btn-g" onclick="closeModal('modal-gmail-picker')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
